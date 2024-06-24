@@ -1,0 +1,312 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\f0\fs22\lang9 Step-by-Step Guide to Create Each Class and Interface for the tns Case study on java given on \par
+21/6/2024   Friday  1pm\par
+CaseStudy No : 1\par
+Student_Akash : AKASH YADAV\par
+\par
+\par
+#### 1. Abstract Class `ShopAcc`\par
+\par
+- **Objective**: This class represents an abstract online shopping account.\par
+\par
+1. **Create a new Java class file** named `ShopAcc.java`.\par
+2. Define the class as `abstract`.\par
+3. Add private fields `accNo` (int) and `accNm` (String).\par
+4. Implement a constructor to initialize `accNo` and `accNm`.\par
+5. Declare an abstract method `public abstract void bookProduct(float amount);`.\par
+6. Override the `toString()` method to provide a string representation of the account details.\par
+\par
+Here's an example code snippet for `ShopAcc`:\par
+\par
+// ShopAcc.java\par
+public abstract class ShopAcc \{\par
+    private int accNo;\par
+    private String accNm;\par
+\par
+    public ShopAcc(int accNo, String accNm) \{\par
+        this.accNo = accNo;\par
+        this.accNm = accNm;\par
+    \}\par
+\par
+    public abstract void bookProduct(float amount);\par
+\par
+    @Override\par
+    public String toString() \{\par
+        return "Account Number: " + accNo + ", Account Name: " + accNm;\par
+    \}\par
+\}\par
+\par
+\par
+\par
+```java\par
+// ShopAcc.java\par
+public abstract class ShopAcc \{\par
+    private int accNo;\par
+    private String accNm;\par
+\par
+    public ShopAcc(int accNo, String accNm) \{\par
+        this.accNo = accNo;\par
+        this.accNm = accNm;\par
+    \}\par
+\par
+    public abstract void bookProduct(float amount);\par
+\par
+    @Override\par
+    public String toString() \{\par
+        return "Account Number: " + accNo + ", Account Name: " + accNm;\par
+    \}\par
+\}\par
+```\par
+\par
+#### 2. Abstract Class `PrimeAcc` extending `ShopAcc`\par
+\par
+- **Objective**: This class represents a prime online shopping account, extending `ShopAcc`.\par
+\par
+1. **Create a new Java class file** named `PrimeAcc.java`.\par
+2. Define the class as `abstract` and extend `ShopAcc`.\par
+3. Implement a constructor to call the superclass constructor.\par
+4. Override the `bookProduct(float amount)` method to provide specific logic for prime accounts (no delivery charges).\par
+\par
+Here's an example code snippet for `PrimeAcc`:\par
+\par
+// PrimeAcc.java\par
+public abstract class PrimeAcc extends ShopAcc \{\par
+    public PrimeAcc(int accNo, String accNm) \{\par
+        super(accNo, accNm);\par
+    \}\par
+\par
+    @Override\par
+    public void bookProduct(float amount) \{\par
+        System.out.println("Booking product for Prime Account: " + amount);\par
+        // Specific logic for prime accounts\par
+    \}\par
+\}\par
+\par
+```java\par
+// PrimeAcc.java\par
+public abstract class PrimeAcc extends ShopAcc \{\par
+    public PrimeAcc(int accNo, String accNm) \{\par
+        super(accNo, accNm);\par
+    \}\par
+\par
+    @Override\par
+    public void bookProduct(float amount) \{\par
+        System.out.println("Booking product for Prime Account: " + amount);\par
+        // Specific logic for prime accounts\par
+    \}\par
+\}\par
+```\par
+\par
+#### 3. Abstract Class `NormalAcc` extending `ShopAcc`\par
+\par
+- **Objective**: This class represents a normal (non-prime) online shopping account, extending `ShopAcc`.\par
+\par
+1. **Create a new Java class file** named `NormalAcc.java`.\par
+2. Define the class as `abstract` and extend `ShopAcc`.\par
+3. Implement a constructor to call the superclass constructor.\par
+4. Override the `bookProduct(float amount)` method to provide specific logic for normal accounts (with delivery charges).\par
+\par
+Here's an example code snippet for `NormalAcc`:\par
+\par
+// NormalAcc.java\par
+public abstract class NormalAcc extends ShopAcc \{\par
+    public NormalAcc(int accNo, String accNm) \{\par
+        super(accNo, accNm);\par
+    \}\par
+\par
+    @Override\par
+    public void bookProduct(float amount) \{\par
+        float deliveryCharge = 10.0f; // Example delivery charge\par
+        System.out.println("Booking product for Normal Account with delivery charge: " + (amount + deliveryCharge));\par
+        // Specific logic for normal accounts\par
+    \}\par
+\}\par
+\par
+```java\par
+// NormalAcc.java\par
+public abstract class NormalAcc extends ShopAcc \{\par
+    public NormalAcc(int accNo, String accNm) \{\par
+        super(accNo, accNm);\par
+    \}\par
+\par
+    @Override\par
+    public void bookProduct(float amount) \{\par
+        float deliveryCharge = 10.0f; // Example delivery charge\par
+        System.out.println("Booking product for Normal Account with delivery charge: " + (amount + deliveryCharge));\par
+        // Specific logic for normal accounts\par
+    \}\par
+\}\par
+```\par
+\par
+#### 4. Abstract Class `ShopFactory`\par
+\par
+- **Objective**: This abstract class provides factory methods to create instances of `PrimeAcc` and `NormalAcc`.\par
+\par
+1. **Create a new Java class file** named `ShopFactory.java`.\par
+2. Define the class as `abstract`.\par
+3. Declare abstract methods `public abstract PrimeAcc getNewPrimeAccount(int accNo, String accNm);` and `public abstract NormalAcc getNewNormalAccount(int accNo, String accNm);`.\par
+\par
+Here's an example code snippet for `ShopFactory`:\par
+\par
+// ShopFactory.java\par
+public abstract class ShopFactory \{\par
+    public abstract PrimeAcc getNewPrimeAccount(int accNo, String accNm);\par
+    public abstract NormalAcc getNewNormalAccount(int accNo, String accNm);\par
+\}\par
+\par
+```java\par
+// ShopFactory.java\par
+public abstract class ShopFactory \{\par
+    public abstract PrimeAcc getNewPrimeAccount(int accNo, String accNm);\par
+    public abstract NormalAcc getNewNormalAccount(int accNo, String accNm);\par
+\}\par
+```\par
+\par
+#### 5. Concrete Class `GSShopFactory` extending `ShopFactory`\par
+\par
+- **Objective**: This concrete class implements `ShopFactory` to instantiate `GSPrimeAcc` and `GSNormalAcc`.\par
+\par
+1. **Create a new Java class file** named `GSShopFactory.java`.\par
+2. Define the class as `public` and extend `ShopFactory`.\par
+3. Implement the abstract methods `getNewPrimeAccount` and `getNewNormalAccount` to return instances of `GSPrimeAcc` and `GSNormalAcc`, respectively.\par
+\par
+Here's an example code snippet for `GSShopFactory`:\par
+\par
+// GSShopFactory.java\par
+public class GSShopFactory extends ShopFactory \{\par
+    @Override\par
+    public PrimeAcc getNewPrimeAccount(int accNo, String accNm) \{\par
+        return new GSPrimeAcc(accNo, accNm);\par
+    \}\par
+\par
+    @Override\par
+    public NormalAcc getNewNormalAccount(int accNo, String accNm) \{\par
+        return new GSNormalAcc(accNo, accNm);\par
+    \}\par
+\}\par
+\par
+```java\par
+// GSShopFactory.java\par
+public class GSShopFactory extends ShopFactory \{\par
+    @Override\par
+    public PrimeAcc getNewPrimeAccount(int accNo, String accNm) \{\par
+        return new GSPrimeAcc(accNo, accNm);\par
+    \}\par
+\par
+    @Override\par
+    public NormalAcc getNewNormalAccount(int accNo, String accNm) \{\par
+        return new GSNormalAcc(accNo, accNm);\par
+    \}\par
+\}\par
+```\par
+\par
+#### 6. Concrete Class `GSPrimeAcc` extending `PrimeAcc`\par
+\par
+- **Objective**: This concrete class represents a specific implementation of a prime account.\par
+\par
+1. **Create a new Java class file** named `GSPrimeAcc.java`.\par
+2. Define the class as `public` and extend `PrimeAcc`.\par
+3. Implement a constructor to call the superclass constructor.\par
+\par
+Here's an example code snippet for `GSPrimeAcc`:\par
+\par
+// GSPrimeAcc.java\par
+public class GSPrimeAcc extends PrimeAcc \{\par
+    public GSPrimeAcc(int accNo, String accNm) \{\par
+        super(accNo, accNm);\par
+    \}\par
+\}\par
+\par
+```java\par
+// GSPrimeAcc.java\par
+public class GSPrimeAcc extends PrimeAcc \{\par
+    public GSPrimeAcc(int accNo, String accNm) \{\par
+        super(accNo, accNm);\par
+    \}\par
+\}\par
+```\par
+\par
+#### 7. Concrete Class `GSNormalAcc` extending `NormalAcc`\par
+\par
+- **Objective**: This concrete class represents a specific implementation of a normal account.\par
+\par
+1. **Create a new Java class file** named `GSNormalAcc.java`.\par
+2. Define the class as `public` and extend `NormalAcc`.\par
+3. Implement a constructor to call the superclass constructor.\par
+\par
+Here's an example code snippet for `GSNormalAcc`:\par
+\par
+// GSNormalAcc.java\par
+public class GSNormalAcc extends NormalAcc \{\par
+    public GSNormalAcc(int accNo, String accNm) \{\par
+        super(accNo, accNm);\par
+    \}\par
+\}\par
+\par
+```java\par
+// GSNormalAcc.java\par
+public class GSNormalAcc extends NormalAcc \{\par
+    public GSNormalAcc(int accNo, String accNm) \{\par
+        super(accNo, accNm);\par
+    \}\par
+\}\par
+```\par
+\par
+#### 8. Main Application `GoShoppingApp` (Entry Point)\par
+\par
+- **Objective**: This class serves as the entry point to test the functionality of the framework.\par
+\par
+1. **Create a new Java class file** named `GoShoppingApp.java`.\par
+2. Define the class as `public`.\par
+3. Implement the `main` method to instantiate `GSShopFactory`, create instances of `PrimeAcc` and `NormalAcc` using the factory, and test their methods.\par
+\par
+Here's an example code snippet for `GoShoppingApp`:\par
+\par
+// GoShoppingApp.java\par
+public class GoShoppingApp \{\par
+    public static void main(String[] args) \{\par
+        // Create an instance of GSShopFactory\par
+        ShopFactory shopFactory = new GSShopFactory();\par
+\par
+        // Instantiate GSPrimeAcc and GSNormalAcc\par
+        PrimeAcc primeAcc = shopFactory.getNewPrimeAccount(1, "Prime Customer");\par
+        NormalAcc normalAcc = shopFactory.getNewNormalAccount(2, "Normal Customer");\par
+\par
+        // Invoke methods\par
+        primeAcc.bookProduct(100.0f);\par
+        normalAcc.bookProduct(50.0f);\par
+\par
+        // Invoke toString() method\par
+        System.out.println(primeAcc.toString());\par
+        System.out.println(normalAcc.toString());\par
+    \}\par
+\}\par
+\par
+```java\par
+// GoShoppingApp.java\par
+public class GoShoppingApp \{\par
+    public static void main(String[] args) \{\par
+        // Create an instance of GSShopFactory\par
+        ShopFactory shopFactory = new GSShopFactory();\par
+\par
+        // Instantiate GSPrimeAcc and GSNormalAcc\par
+        PrimeAcc primeAcc = shopFactory.getNewPrimeAccount(1, "Prime Customer");\par
+        NormalAcc normalAcc = shopFactory.getNewNormalAccount(2, "Normal Customer");\par
+\par
+        // Invoke methods\par
+        primeAcc.bookProduct(100.0f);\par
+        normalAcc.bookProduct(50.0f);\par
+\par
+        // Invoke toString() method\par
+        System.out.println(primeAcc.toString());\par
+        System.out.println(normalAcc.toString());\par
+    \}\par
+\}\par
+```\par
+\par
+### Summary\par
+\par
+These steps outline the creation of each class and interface based on the provided Java case study. Each class and interface is structured to fulfill its specific role within the online shopping application framework, adhering to the principles of abstraction, inheritance, and polymorphism as described in your requirements. Adjustments and additional features can be incorporated based on further project specifications or requirements.\par
+}
+ 
